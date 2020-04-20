@@ -56,7 +56,7 @@ public class ConwayGameOfLife
    *
    * @return returns the gameboard representation in the GameBoard object
    */
-  public status[][] getGameBoard () 
+  public Status[][] getGameBoard () 
   {
    return gameBoard.getGameBoard(); 
   }
@@ -73,12 +73,22 @@ public class ConwayGameOfLife
   
   public void stepOneGeneration ()
   {
-    
+    Status[][] board = getGameBoard();
+    iterateThroughCells(board);
   }
   
-  private void iterateThroughCells ()
+  private void iterateThroughCells (Status[][] board)
   {
-    
+    for (int r = 0; r < board.length; r++)
+      for (int c = 0; c < board[0].length; c++)
+      checkCellNerhbors(r, c, board);     
+  }
+  
+  private void checkCellNeighbors (int r, int c, Status[][] board)
+  {
+    int neighbors = 0;
+    // get logic down
+    // for every neighbor alive, increment n
   }
   
 }
