@@ -67,5 +67,15 @@ public class GameBoard
   {
     return gameBoard[cRow][cColumn];
   }
+ 
+ /**
+ * getGameBoard method returns the game board
+ *
+ * @return Returns the gameboar represenation
+ */
+ public status[][] getGameBoard ()
+ {
+  return gameBoard;
+ }
   
 }
