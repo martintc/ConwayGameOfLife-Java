@@ -15,8 +15,70 @@ public class ConwayGameOfLife
   private final int DEFAULT_ROW = 100;
   private final int DEFAULT_COLUMN = 100;
   
+  /**
+  * Default constructor that initializes the GameBoard with a default row and column length of 100.
+  */
   public ConwayGameOfLife ()
   {
     gameBoard = new GameBoard(DEFAULT_ROW, DEFAULT_COLUMN);
-    }
+    genertaion = 0;
+  }
+  
+  /** 
+  * Constructor that initializes a gameboard based on user choice, sleep duration is not set.
+  * 
+  * @param initRow User choosen row length
+  * @param initColumn User choosen column length
+  */
+  public ConwayGameOfLife (int initRow, int initColumn) 
+  {
+    gameBoard = new GameBoard(initRow, initColumn);
+    generation = 0;
+  }
+  
+  /**
+  * Constructor that initializes a gameboard based on user choice and sleep duration between generations is set for when
+  * stepping through multiple generations
+  *
+  * @param initRow User choosen row length
+  * @param initColumn User choosen column length
+  * @param initSleepDuraction User choosen duration in milliseconds for the program to sleep (pause) between generations
+  */
+  public void ConwayGameOfLife (int initRow, int initColumn, long initSleepDuration)
+  {
+    gameBoard = new GameBoard(initRow, initColumn);
+    generation = 0;
+    sleepDuration = initSleepDuration;
+  }
+  
+  /**
+   * getGameBoard method returns the gameboard
+   *
+   * @return returns the gameboard representation in the GameBoard object
+   */
+  public status[][] getGameBoard () 
+  {
+   return gameBoard.getGameBoard(); 
+  }
+  
+  /**
+  * getGeneration method returns the number of generation the game is currently in.
+  *
+  * @return Returns the integer number of the generation the game is currently in.
+  */
+  public int getGeneration ()
+  {
+    return generation;
+  }
+  
+  public void stepOneGeneration ()
+  {
+    
+  }
+  
+  private void iterateThroughCells ()
+  {
+    
+  }
+  
 }
