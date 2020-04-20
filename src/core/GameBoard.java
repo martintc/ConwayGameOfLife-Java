@@ -11,15 +11,6 @@ public class GameBoard
   private status[][] gameBoard;
   
   /**
-  * Enumeration for value that represents the cell in the multi-deminsional array
-  */
-  enum status 
-  {
-    ALIVE,
-    DEAD;
-  }
-  
-  /**
   * Constructor that initializes and empty GameBoard at the start of gameplay.
   *
   * @param initRow The initial length of rows for the multideminsional array
