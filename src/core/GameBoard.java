@@ -8,7 +8,7 @@
 public class GameBoard 
 {
  
-  private status[][] gameBoard;
+  private Status[][] gameBoard;
   
   /**
   * Constructor that initializes and empty GameBoard at the start of gameplay.
@@ -22,7 +22,7 @@ public class GameBoard
     
     for (int row = 0; row < gameBoard.length; row++)
       for (int column = 0; column < gameBoard[0].length; column++)
-        gameBoard[row][column] = status.DEAD;
+        gameBoard[row][column] = Status.DEAD;
   }
   
   /**
@@ -33,7 +33,7 @@ public class GameBoard
   */
   public void setCellAlive (int cRow, int cColumn)
   {
-   gameBoard[cRow][cColumn] = status.ALIVE; 
+   gameBoard[cRow][cColumn] = Status.ALIVE; 
   }
   
   /**
@@ -44,7 +44,7 @@ public class GameBoard
   */
   public void setCellDead (int cRow, int cColumn)
   {
-    gameBoard[cRow][cColumn] = status.DEAD;
+    gameBoard[cRow][cColumn] = Status.DEAD;
   }
   
   /**
@@ -54,7 +54,7 @@ public class GameBoard
   * @param cColumn The column location of a cell
   * @return status The status token of a cell at the specified location
   */
-  public status getCellState (int cRow, int cColumn) 
+  public Status getCellState (int cRow, int cColumn) 
   {
     return gameBoard[cRow][cColumn];
   }
@@ -64,7 +64,7 @@ public class GameBoard
  *
  * @return Returns the gameboar represenation
  */
- public status[][] getGameBoard ()
+ public Status[][] getGameBoard ()
  {
   return gameBoard;
  }
