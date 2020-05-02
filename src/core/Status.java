@@ -1,3 +1,5 @@
+package core;
+
 /**
 * Enumeration that represents the current state of an individual cell on the gameboard.
 *
@@ -5,7 +7,7 @@
 * @version 1.0
 */
 
-public enum Status [
+public enum Status {
   ALIVE,
   DEAD;
 }

@@ -1,3 +1,5 @@
+package core;
+
 /** ConwayGameOfLife class controls the logic and gameboard for the Game of Life. It performs game operations in accordance
 * with the rules of the game. It has option to step 1 generation, or multiple generations and the ability to pause between each
 * each generation if wanted.
@@ -21,7 +23,7 @@ public class ConwayGameOfLife
   public ConwayGameOfLife ()
   {
     gameBoard = new GameBoard(DEFAULT_ROW, DEFAULT_COLUMN);
-    genertaion = 0;
+    generation = 0;
   }
   
   /** 
@@ -50,6 +52,10 @@ public class ConwayGameOfLife
     generation = 0;
     sleepDuration = initSleepDuration;
   }
+
+    public void initializeCell (int row, int column) {
+        gameBoard.setCellAlive(row, column);
+    }
   
   /**
    * getGameBoard method returns the gameboard
@@ -71,24 +77,11 @@ public class ConwayGameOfLife
     return generation;
   }
   
-  public void stepOneGeneration ()
-  {
-    Status[][] board = getGameBoard();
-    iterateThroughCells(board);
-  }
-  
-  private void iterateThroughCells (Status[][] board)
-  {
-    for (int r = 0; r < board.length; r++)
-      for (int c = 0; c < board[0].length; c++)
-      checkCellNerhbors(r, c, board);     
-  }
-  
-  private void checkCellNeighbors (int r, int c, Status[][] board)
-  {
-    int neighbors = 0;
-    // get logic down
-    // for every neighbor alive, increment n
-  }
+    public void stepGeneration () {
+	NeighborChecker checker = new NeighborChecker(gameBoard);
+	int[][] neighborData = checker.getCellNeighborData();
+        gameBoard.processGeneration(neighborData);
+        generation++;
+    }
   
 }

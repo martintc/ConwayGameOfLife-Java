@@ -1,3 +1,5 @@
+package core;
+
 /**
 * GameBoard class is a class file is used as an object to represent the implementation of the gameboard that Conway's Game Of Life is played on
 *
@@ -18,7 +20,7 @@ public class GameBoard
   */
   public GameBoard (int initRow, int initColumn)
   {
-    gameBoard = new GameBoard[initRow][initColumn];
+    gameBoard = new Status[initRow][initColumn];
     
     for (int row = 0; row < gameBoard.length; row++)
       for (int column = 0; column < gameBoard[0].length; column++)
@@ -54,7 +56,7 @@ public class GameBoard
   * @param cColumn The column location of a cell
   * @return status The status token of a cell at the specified location
   */
-  public Status getCellState (int cRow, int cColumn) 
+  public Status getCell (int cRow, int cColumn) 
   {
     return gameBoard[cRow][cColumn];
   }
@@ -68,5 +70,24 @@ public class GameBoard
  {
   return gameBoard;
  }
-  
+
+    public int getRowLength () {
+	return gameBoard.length;
+    }
+
+    public int getColumnLength () {
+	return gameBoard[0].length;
+    }
+
+    public void processGeneration (int[][] data) {
+        for (int row = 0; row < this.getRowLength(); row++)
+            for (int column = 0; column < this.getColumnLength(); column++) {
+                if (data[row][column] < 2 && gameBoard[row][column] == Status.ALIVE)
+                    gameBoard[row][column] = Status.DEAD;
+                    else if (data[row][column] > 3 && gameBoard[row][column] == Status.ALIVE) gameBoard[row][column] = Status.DEAD;
+                    else if (data[row][column] == 3 && gameBoard[row][column] == Status.DEAD) gameBoard[row][column] = Status.ALIVE;
+                             
+            }
+    }
+    
 }
