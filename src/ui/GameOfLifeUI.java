@@ -93,7 +93,7 @@ public class GameOfLifeUI extends Application {
 
     private void initGame () {
         try {
-            game = new ConwayGameOfLife(getRowInput("Choose a row length"), getColumnInput("Choose a column length"));
+            game = new ConwayGameOfLife(getUserInput("Choose a row length"), getUserInput("Choose a column length"));
         } catch (Exception e) {
             showAlert("An input was invalid....");
             initGame();
@@ -102,7 +102,7 @@ public class GameOfLifeUI extends Application {
 
     private void setCellAlive () {
         try {
-            game.initializeCell(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+            game.initializeCell(getUserInput("Choose a row"), getUserInput("Choose a column"));
         } catch (Exception e) {
             showAlert("An input was invalid......");
             setCellAlive();
@@ -110,14 +110,7 @@ public class GameOfLifeUI extends Application {
         updateGameBoardGridPane();
     }
 
-    private int getRowInput (String s) throws Exception {
-        TextInputDialog rowChoice = new TextInputDialog();
-        rowChoice.setContentText(s);
-        Optional<String> input = rowChoice.showAndWait();
-        return Integer.parseInt(input.get());
-    }
-
-    private int getColumnInput (String s) throws Exception {
+    private int getUserInput (String s) throws Exception {
         TextInputDialog columnChoice = new TextInputDialog();
         columnChoice.setContentText(s);
         Optional<String> input = columnChoice.showAndWait();
@@ -126,7 +119,7 @@ public class GameOfLifeUI extends Application {
 
     private void setCellDead () {
         try {
-            game.setCellDead(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+            game.setCellDead(getUserInput("Choose a row"), getUserInput("Choose a column"));
         } catch (Exception e) {
             showAlert("An input was invalid......");
             setCellAlive();
