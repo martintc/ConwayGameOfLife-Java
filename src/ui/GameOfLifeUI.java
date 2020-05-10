@@ -4,6 +4,7 @@ import core.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextInputDialog;
@@ -91,22 +92,32 @@ public class GameOfLifeUI extends Application {
     }
 
     private void initGame () {
-        game = new ConwayGameOfLife(getRowInput("Choose a row length"), getColumnInput("Choose a column length"));
+        try {
+            game = new ConwayGameOfLife(getRowInput("Choose a row length"), getColumnInput("Choose a column length"));
+        } catch (Exception e) {
+            showAlert("An input was invalid....");
+            initGame();
+        }
     }
 
     private void setCellAlive () {
-        game.initializeCell(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+        try {
+            game.initializeCell(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+        } catch (Exception e) {
+            showAlert("An input was invalid......");
+            setCellAlive();
+        }
         updateGameBoardGridPane();
     }
 
-    private int getRowInput (String s) {
+    private int getRowInput (String s) throws Exception {
         TextInputDialog rowChoice = new TextInputDialog();
         rowChoice.setContentText(s);
         Optional<String> input = rowChoice.showAndWait();
         return Integer.parseInt(input.get());
     }
 
-    private int getColumnInput (String s) {
+    private int getColumnInput (String s) throws Exception {
         TextInputDialog columnChoice = new TextInputDialog();
         columnChoice.setContentText(s);
         Optional<String> input = columnChoice.showAndWait();
@@ -114,7 +125,12 @@ public class GameOfLifeUI extends Application {
     }
 
     private void setCellDead () {
-        game.setCellDead(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+        try {
+            game.setCellDead(getRowInput("Choose a row"), getColumnInput("Choose a column"));
+        } catch (Exception e) {
+            showAlert("An input was invalid......");
+            setCellAlive();
+        }
         updateGameBoardGridPane();
     }
 
@@ -125,6 +141,12 @@ public class GameOfLifeUI extends Application {
 
     private void updateGameBoardGridPane () {
         board.update(game.getGameBoard());
+    }
+
+    private void showAlert (String s) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setContentText(s);
+        a.showAndWait();
     }
 
     // testing method
