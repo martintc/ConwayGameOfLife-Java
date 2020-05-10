@@ -73,7 +73,15 @@ public class GameOfLifeUI extends Application {
                 step();
             }
         });
-        interfacePane.getChildren().addAll(setCellAliveButton, setCellDeadButton, stepButton);
+        Button multiStepButton = new Button();
+        multiStepButton.setText("Multi-Step");
+        multiStepButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                multiStep();
+            }
+        });
+        interfacePane.getChildren().addAll(setCellAliveButton, setCellDeadButton, stepButton, multiStepButton);
 
         mainScenePane = new BorderPane();
         mainScene = new Scene(mainScenePane);
@@ -128,6 +136,33 @@ public class GameOfLifeUI extends Application {
     private void step () {
         game.stepGeneration();
         board.update(game.getGameBoard());
+        generation.setText(Integer.toString(game.getGeneration()));
+    }
+
+    private void multiStep () {
+        int s = 0;
+        int g = 1;
+        try {
+            s = getUserInput("How many seconds between each generation? [No partial seconds; whole seconds]");
+            g = getUserInput("How many generations to step through?");
+            if (s < 0 || g <= 0)  {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            showAlert("An input was invalid......");
+        }
+        for (int i = 0; i < g; i++) {
+            step();
+            pause((long) s);
+        }
+    }
+
+    private void pause (long s) {
+        try {
+            Thread.sleep(s * 1000);
+        } catch (InterruptedException e) {
+            showAlert("An error has occurred with the wait duration.....");
+        }
     }
 
     private void updateGameBoardGridPane () {
