@@ -73,9 +73,7 @@ public class GameOfLifeUI extends Application {
                 step();
             }
         });
-        interfacePane.getChildren().add(setCellAliveButton);
-        interfacePane.getChildren().add(setCellDeadButton);
-        interfacePane.getChildren().add(stepButton);
+        interfacePane.getChildren().addAll(setCellAliveButton, setCellDeadButton, stepButton);
 
         mainScenePane = new BorderPane();
         mainScene = new Scene(mainScenePane);
@@ -142,8 +140,4 @@ public class GameOfLifeUI extends Application {
         a.showAndWait();
     }
 
-    // testing method
-    public static void main (String[] args) {
-        launch(args);
-    }
 }
