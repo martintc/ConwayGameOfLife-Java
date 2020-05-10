@@ -19,12 +19,14 @@ public class ConwayGoL
   */
   public static void main (String[] args) {
       System.out.println("Welcome to Conway's Game of Life");
-      System.out.println("Please select a mode: \n\tT - Text");
+      System.out.println("Please select a mode: \n\tT - Text\n\tG - GUI");
       String mode = getMode();
 
       if (mode.equals("T")) {
           GameOfLifeTextConsole game = new GameOfLifeTextConsole();
           game.run();
+      } else if (mode.equals("G")) {
+          GameOfLifeUI.run(args);
       } else {
           System.out.println("Error.... Exiting");
           System.exit(0);
@@ -36,7 +38,7 @@ public class ConwayGoL
         System.out.print(">> ");
         try {
             String choice = scan.nextLine();
-            if (choice.equals("T")) return choice;
+            if (choice.equals("T") || choice.equals("G")) return choice;
             else throw new InputMismatchException();
         } catch (InputMismatchException e) {
             System.out.println("Wrong input, try again");
