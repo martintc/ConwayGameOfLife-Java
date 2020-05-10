@@ -44,7 +44,7 @@ public class ConwayGameOfLife
   *
   * @param initRow User choosen row length
   * @param initColumn User choosen column length
-  * @param initSleepDuraction User choosen duration in milliseconds for the program to sleep (pause) between generations
+  * @param initSleepDuration User choosen duration in milliseconds for the program to sleep (pause) between generations
   */
   public void ConwayGameOfLife (int initRow, int initColumn, long initSleepDuration)
   {
@@ -55,6 +55,10 @@ public class ConwayGameOfLife
 
     public void initializeCell (int row, int column) {
         gameBoard.setCellAlive(row, column);
+    }
+
+    public void setCellDead (int row, int column) {
+      gameBoard.setCellDead(row, column);
     }
   
   /**
